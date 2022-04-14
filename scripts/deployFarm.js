@@ -8,8 +8,8 @@ const main = async () => {
 
     // For deploying TokenFarm.sol we need the addresses of DaiToken.sol and DappToken.sol
     // (deployed before by running deployTokens.js)
-    const DaiTokenAddress = "0xC71579648f6563f138d29cE9623C8340f2B2dCb9";
-    const DappTokenAddress = "0x68bCDF1E70e7aE7A13787bCc90fe54E1CD461964";
+    const DaiTokenAddress = "0xDCA0586847562bF07d521992C51832E805998Bb7";
+    const DappTokenAddress = "0x96F59A9AF8FF2025ab79AA1F2156F17a53dcCdd2";
 
     // Deployment of TokenFarm.sol Smart Contract
     const TokenFarmContractFactory = await hre.ethers.getContractFactory('TokenFarm');

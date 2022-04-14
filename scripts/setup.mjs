@@ -17,11 +17,11 @@ const main = async () => {
 
     // CONTRACT IMPORT AND INSTANTIATION
     // Deployed contract address and ABI imports
-    const TokenFarmContractaddress = "0xF50ca2BE8B9E15c11Bd3fa0BC9fe87226eAD7CAe";
+    const TokenFarmContractaddress = "0xEd5c30a05A8ADcaA32b31431fBc5F57A74C43183";
     const TokenFarmContractABI = abi.abi;
-    const DappTokenContractaddress = "0x5eaF8964484C05E3A11Bed5A480a5e315D2eD6D1";
+    const DappTokenContractaddress = "0x96F59A9AF8FF2025ab79AA1F2156F17a53dcCdd2";
     const DappTokenContractABI = abi2.abi;
-    const DaiTokenContractaddress = "0x405D97E3EE29f9459cbF17e452Cf9Dc93C29A4Db";
+    const DaiTokenContractaddress = "0xDCA0586847562bF07d521992C51832E805998Bb7";
     const DaiTokenContractABI = abi3.abi;
 
     // Network provider (Alchemy)
@@ -55,9 +55,9 @@ const main = async () => {
 
     // Trasnfer 100 Mock DAI tokens to investor
     // ADDRESS BELOW IS INVESTOR ADDRESS (Not the one who deploys the contracts)
-    console.log("Transfering 100 Mock DAI Tokens to investor");
+    console.log("Transfering 100 Mock DAI Tokens to investor with address " + process.env.INVESTOR_ADDRESS);
     try{
-        await DaiTokencontract.transfer("0x105dD7af9cd6AdD2ACa7913e2f61FeBc40814006", '100000000000000000000');
+        await DaiTokencontract.transfer(process.env.INVESTOR_ADDRESS, '100000000000000000000');
         console.log("Transfered!"); 
     }catch(error){
         console.log("ERROR: User has not enough DAPP Tokens funds");
