@@ -38,24 +38,29 @@ const main = async () => {
     const DaiTokencontractInvestor = new ethers.Contract(DaiTokenContractaddress , DaiTokenContractABI, signer2);
     console.log("Contract imported address (Token Farm) for Investor:", TokenFarmContractaddress);
 
+    // STAKING - UNSTAKING - ISSUING TOKEN FUNCTION TESTED BELOW
+    // COMMUNT - UNCOMMENT DEPENDING ON WHAT FUNCTION YOU WANT TO TEST
+
     // Test staking function
     console.log("Staking tokens...");
-    //try{
+    try{
         console.log("Approving...")
-        const txn2 = await DaiTokencontractInvestor.approve(process.env.INVESTOR_ADDRESS, 50);
-        txn2.wait();
+        const txn = await DaiTokencontractInvestor.approve(TokenFarmContractaddress, '5000000000000000000');
+        txn.wait();
         //await DaiTokencontractInvestor.approve(TokenFarmContractaddress, 5)
         console.log("Approved")
-        const txn = await TokenFarmcontractInvestor.stakeTokens(50);
+        const txn2 = await TokenFarmcontractInvestor.stakeTokens('5000000000000000000', {gasLimit: 9999999});
         console.log("Staked!");
-    //}catch(error){
+    }catch(error){
         console.log("ERROR: staking amount can not be 0.");
-    //}
+    }
 
+    
     // Test issuing rewards
     console.log("Issuing rewards...");
     try{
-        await TokenFarmcontractOwner.issueTokens();
+        const txn = await TokenFarmcontractOwner.issueTokens();
+        txn.wait();
         console.log("Issued!!");
         }catch(error){
             console.log("ERROR: only OWNER can issue tokens.");
@@ -64,11 +69,12 @@ const main = async () => {
     // Test unstaking function
     console.log("Unstaking tokens...");
     try{
-        await TokenFarmcontractInvestor.unstakeTokens(10);
-        console.log("Staked!");
+        const txn = await TokenFarmcontractInvestor.unstakeTokens();
+        txn.wait();
+        console.log("Unstaked!");
     }catch(error){
         console.log("ERROR: There are not staked tokens.");
-    }
+    }    
 };
   
 const runMain = async () => {

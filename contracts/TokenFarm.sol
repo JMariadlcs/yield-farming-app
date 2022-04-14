@@ -36,7 +36,7 @@ contract TokenFarm{ // Goal: receive DAITokens and issue DappTokens
 
     // 1. Tokens staking (deposit money)
     // Transfer mDAI tokens for staking (from investor's wallet to TokenFarm.sol Smart Contract)
-    function stakeTokens(uint _amount) public payable {
+    function stakeTokens(uint _amount) public {
         require(_amount > 0, "wrong amount: 0, increment amount"); // check that amount is valid
 
         daiToken.transferFrom(msg.sender, address(this), _amount); // transferFrom is an ERC20 function
