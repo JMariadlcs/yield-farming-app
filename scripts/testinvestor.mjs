@@ -4,6 +4,7 @@
 // THIS SCRIPT IS USED FOR TESTING INVESTOR STAKE, UNSTAKE AND OWNER ISSUE REWARD FUNCTIONS
 
 import abi from './utils/TokenFarm.json'; // Update it everytime you deploy a new contract
+import abi2 from './utils/DaiToken.json';
 import { ethers } from "ethers";
 import dotenv from 'dotenv';
 dotenv.config();
@@ -12,8 +13,10 @@ const main = async () => {
 
      // CONTRACT IMPORT AND INSTANTIATION
     // Deployed contract address and ABI imports
-    const TokenFarmContractaddress = "0x708a4C60552049CcCC765518ceA1F77175Ab65F0";
+    const TokenFarmContractaddress = "0xe359B873Eb0034aa5721206911E67deD1CCE36D1";
     const TokenFarmContractABI = abi.abi;
+    const DaiTokenContractaddress = "0xDCA0586847562bF07d521992C51832E805998Bb7";
+    const DaiTokenContractABI = abi2.abi;
     
     // Network provider (Alchemy)
     const provider = new ethers.providers.AlchemyProvider('rinkeby', process.env.STAGING_ALCHEMY_KEY_MJS);
@@ -30,18 +33,22 @@ const main = async () => {
     const TokenFarmcontractOwner = new ethers.Contract(TokenFarmContractaddress , TokenFarmContractABI, signer);
     console.log("Contract imported address (Token Farm) for Owner:", TokenFarmContractaddress);
 
-    // Instantiate TokenFarm.sol contract for INVESTOR
+    // Instantiate TokenFarm.sol and DaiToken.sol contract for INVESTOR
     const TokenFarmcontractInvestor = new ethers.Contract(TokenFarmContractaddress , TokenFarmContractABI, signer2);
+    const DaiTokencontractInvestor = new ethers.Contract(DaiTokenContractaddress , DaiTokenContractABI, signer2);
     console.log("Contract imported address (Token Farm) for Investor:", TokenFarmContractaddress);
 
     // Test staking function
     console.log("Staking tokens...");
-    try{
-        await TokenFarmcontractInvestor.stakeTokens(10);
+    //try{
+        console.log("Approving...")
+        await DaiTokencontractInvestor.approve(process.env.INVESTOR_ADDRESS, 5);
+        console.log("Approved")
+        const txn = await TokenFarmcontractInvestor.stakeTokens(5);
         console.log("Staked!");
-    }catch(error){
+    //}catch(error){
         console.log("ERROR: staking amount can not be 0.");
-    }
+    //}
 
     // Test issuing rewards
     console.log("Issuing rewards...");

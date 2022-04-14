@@ -1,10 +1,11 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.8.4;
 
 import "./DappToken.sol";
 import "./DaiToken.sol";
+import "hardhat/console.sol";
 
 contract TokenFarm{ // Goal: receive DAITokens and issue DappTokens
-
+    
     // variables
     string public name = "Dapp Token Farm";
     address public owner;
@@ -23,9 +24,14 @@ contract TokenFarm{ // Goal: receive DAITokens and issue DappTokens
     address[] public stakers;
 
     constructor(DappToken _dappToken, DaiToken _daiToken) public { // instanciate the token Smart Contracts used here
-        owner = msg.sender;
         dappToken = _dappToken;
         daiToken = _daiToken;
+        owner = msg.sender;
+       
+    }
+
+    receive() external payable {
+
     }
 
     // 1. Tokens staking (deposit money)

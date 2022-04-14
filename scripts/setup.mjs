@@ -17,7 +17,7 @@ const main = async () => {
 
     // CONTRACT IMPORT AND INSTANTIATION
     // Deployed contract address and ABI imports
-    const TokenFarmContractaddress = "0xEd5c30a05A8ADcaA32b31431fBc5F57A74C43183";
+    const TokenFarmContractaddress = "0xeaC81F9dA3bf68fceC2dC525DacD21d3A62dbdd8";
     const TokenFarmContractABI = abi.abi;
     const DappTokenContractaddress = "0x96F59A9AF8FF2025ab79AA1F2156F17a53dcCdd2";
     const DappTokenContractABI = abi2.abi;
