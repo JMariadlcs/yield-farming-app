@@ -17,11 +17,11 @@ const main = async () => {
 
     // CONTRACT IMPORT AND INSTANTIATION
     // Deployed contract address and ABI imports
-    const TokenFarmContractaddress = "0xeaC81F9dA3bf68fceC2dC525DacD21d3A62dbdd8";
+    const TokenFarmContractaddress = "0x30fd93b3D6Fb4Bf9624F4b9D1818531De63D833d";
     const TokenFarmContractABI = abi.abi;
-    const DappTokenContractaddress = "0x96F59A9AF8FF2025ab79AA1F2156F17a53dcCdd2";
+    const DappTokenContractaddress = "0x1223dCf9bD398AE70d94BAdB4aEaAfB92b7c58B1";
     const DappTokenContractABI = abi2.abi;
-    const DaiTokenContractaddress = "0xDCA0586847562bF07d521992C51832E805998Bb7";
+    const DaiTokenContractaddress = "0xDdc182cca4e36409372417D7dcb253429F774438";
     const DaiTokenContractABI = abi3.abi;
 
     // Network provider (Alchemy)

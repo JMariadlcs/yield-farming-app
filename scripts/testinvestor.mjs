@@ -13,9 +13,9 @@ const main = async () => {
 
      // CONTRACT IMPORT AND INSTANTIATION
     // Deployed contract address and ABI imports
-    const TokenFarmContractaddress = "0xe359B873Eb0034aa5721206911E67deD1CCE36D1";
+    const TokenFarmContractaddress = "0x30fd93b3D6Fb4Bf9624F4b9D1818531De63D833d";
     const TokenFarmContractABI = abi.abi;
-    const DaiTokenContractaddress = "0xDCA0586847562bF07d521992C51832E805998Bb7";
+    const DaiTokenContractaddress = "0xDdc182cca4e36409372417D7dcb253429F774438";
     const DaiTokenContractABI = abi2.abi;
     
     // Network provider (Alchemy)
@@ -42,9 +42,11 @@ const main = async () => {
     console.log("Staking tokens...");
     //try{
         console.log("Approving...")
-        await DaiTokencontractInvestor.approve(process.env.INVESTOR_ADDRESS, 5);
+        const txn2 = await DaiTokencontractInvestor.approve(process.env.INVESTOR_ADDRESS, 50);
+        txn2.wait();
+        //await DaiTokencontractInvestor.approve(TokenFarmContractaddress, 5)
         console.log("Approved")
-        const txn = await TokenFarmcontractInvestor.stakeTokens(5);
+        const txn = await TokenFarmcontractInvestor.stakeTokens(50);
         console.log("Staked!");
     //}catch(error){
         console.log("ERROR: staking amount can not be 0.");
